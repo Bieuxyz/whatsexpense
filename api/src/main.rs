@@ -10,7 +10,7 @@ use tower_http::cors::{Any, CorsLayer};
 use tower_http::timeout::TimeoutLayer;
 use tower_http::trace;
 use tower_http::trace::TraceLayer;
-use tracing::Level;
+use tracing::{info, Level};
 use tracing_subscriber::layer::SubscriberExt;
 use tracing_subscriber::util::SubscriberInitExt;
 use utoipa::openapi::security::{ApiKey, ApiKeyValue, SecurityScheme};

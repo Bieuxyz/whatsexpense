@@ -47,10 +47,12 @@ impl AppState {
     pub async fn init(settings: Settings) -> Self {
         let mongo_client = Client::with_uri_str(settings.database.url.as_str())
             .await
-            .unwrap();
+            .expect("failed to connect to mongodb");
+
         let database = mongo_client.database(settings.database.name.as_str());
 
-        let redis_client = redis::Client::open(settings.redis.url.as_str()).unwrap();
+        let redis_client = redis::Client::open(settings.redis.url.as_str())
+            .expect("failed to connect to redis");
 
         // settings
         let settings = Arc::new(settings);

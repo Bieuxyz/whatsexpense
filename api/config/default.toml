@@ -18,4 +18,4 @@ refresh_token = { secret_key = "secret", expires_in_secs = 604_800 }
 app_bundle_ids = "com.whatsexpense.app,host.exp.Exponent"
 
 [redis]
-url = "redis://localhost:6379"
+url = "redis://redis:6379"
