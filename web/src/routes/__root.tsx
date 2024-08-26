@@ -1,25 +1,17 @@
 import { createRootRoute, Outlet } from "@tanstack/react-router"
-import { lazy, Suspense } from "react"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import { Sidebar } from "@/components/Sidebar"
 
-const TanStackRouterDevtools =
-  process.env.NODE_ENV === "production"
-    ? () => null // Render nothing in production
-    : lazy(() =>
-        // Lazy load in development
-        import("@tanstack/router-devtools").then((res) => ({
-          default: res.TanStackRouterDevtools,
-          // For Embedded Mode
-          // default: res.TanStackRouterDevtoolsPanel
-        })),
-      )
+const queryClient = new QueryClient()
 
 export const Route = createRootRoute({
   component: () => (
-    <>
-      <Outlet />
-      <Suspense>
-        <TanStackRouterDevtools position="top-left" />
-      </Suspense>
-    </>
+    <QueryClientProvider client={queryClient}>
+      {/*<Header />*/}
+      <div className="flex h-screen w-screen">
+        <Sidebar />
+        <Outlet />
+      </div>
+    </QueryClientProvider>
   ),
 })
