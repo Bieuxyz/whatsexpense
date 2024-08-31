@@ -2,5 +2,8 @@
 .idea
 
 !/config/default.toml
-.env
+api/.env
 .DS_Store
+
+#env
+.env

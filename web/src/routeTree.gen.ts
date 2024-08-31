@@ -13,7 +13,12 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as TermOfServiceImport } from './routes/term-of-service'
 import { Route as SignInImport } from './routes/sign-in'
+import { Route as SettingImport } from './routes/setting'
+import { Route as RegionImport } from './routes/region'
+import { Route as LanguageImport } from './routes/language'
+import { Route as CurrencyImport } from './routes/currency'
 import { Route as ChatImport } from './routes/chat'
 
 // Create Virtual Routes
@@ -22,8 +27,33 @@ const IndexLazyImport = createFileRoute('/')()
 
 // Create/Update Routes
 
+const TermOfServiceRoute = TermOfServiceImport.update({
+  path: '/term-of-service',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const SignInRoute = SignInImport.update({
   path: '/sign-in',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const SettingRoute = SettingImport.update({
+  path: '/setting',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const RegionRoute = RegionImport.update({
+  path: '/region',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const LanguageRoute = LanguageImport.update({
+  path: '/language',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const CurrencyRoute = CurrencyImport.update({
+  path: '/currency',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -55,11 +85,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ChatImport
       parentRoute: typeof rootRoute
     }
+    '/currency': {
+      id: '/currency'
+      path: '/currency'
+      fullPath: '/currency'
+      preLoaderRoute: typeof CurrencyImport
+      parentRoute: typeof rootRoute
+    }
+    '/language': {
+      id: '/language'
+      path: '/language'
+      fullPath: '/language'
+      preLoaderRoute: typeof LanguageImport
+      parentRoute: typeof rootRoute
+    }
+    '/region': {
+      id: '/region'
+      path: '/region'
+      fullPath: '/region'
+      preLoaderRoute: typeof RegionImport
+      parentRoute: typeof rootRoute
+    }
+    '/setting': {
+      id: '/setting'
+      path: '/setting'
+      fullPath: '/setting'
+      preLoaderRoute: typeof SettingImport
+      parentRoute: typeof rootRoute
+    }
     '/sign-in': {
       id: '/sign-in'
       path: '/sign-in'
       fullPath: '/sign-in'
       preLoaderRoute: typeof SignInImport
+      parentRoute: typeof rootRoute
+    }
+    '/term-of-service': {
+      id: '/term-of-service'
+      path: '/term-of-service'
+      fullPath: '/term-of-service'
+      preLoaderRoute: typeof TermOfServiceImport
       parentRoute: typeof rootRoute
     }
   }
@@ -70,7 +135,12 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren({
   IndexLazyRoute,
   ChatRoute,
+  CurrencyRoute,
+  LanguageRoute,
+  RegionRoute,
+  SettingRoute,
   SignInRoute,
+  TermOfServiceRoute,
 })
 
 /* prettier-ignore-end */
@@ -83,7 +153,12 @@ export const routeTree = rootRoute.addChildren({
       "children": [
         "/",
         "/chat",
-        "/sign-in"
+        "/currency",
+        "/language",
+        "/region",
+        "/setting",
+        "/sign-in",
+        "/term-of-service"
       ]
     },
     "/": {
@@ -92,8 +167,23 @@ export const routeTree = rootRoute.addChildren({
     "/chat": {
       "filePath": "chat.tsx"
     },
+    "/currency": {
+      "filePath": "currency.tsx"
+    },
+    "/language": {
+      "filePath": "language.tsx"
+    },
+    "/region": {
+      "filePath": "region.tsx"
+    },
+    "/setting": {
+      "filePath": "setting.tsx"
+    },
     "/sign-in": {
       "filePath": "sign-in.tsx"
+    },
+    "/term-of-service": {
+      "filePath": "term-of-service.tsx"
     }
   }
 }

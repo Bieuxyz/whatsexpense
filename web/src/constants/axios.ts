@@ -15,6 +15,8 @@ export interface Config extends AxiosRequestConfig {
   baseUrl?: string
 }
 
+let isRetry = false
+
 const createAxiosInstant = (config?: Config) => {
   const instance = axios.create({
     headers: {
@@ -54,7 +56,9 @@ const createAxiosInstant = (config?: Config) => {
 
       if (err.response) {
         // Access Token was expired
-        if (err.response.status === 401) {
+        if (err.response.status === 401 && isRetry) {
+          isRetry = true
+
           try {
             const refreshToken = getRefreshToken()
             if (!refreshToken) {

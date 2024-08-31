@@ -26,13 +26,13 @@ export const ChatComposer = () => {
   const handleKeyDown = async (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter" && inputRef?.current) {
       event.preventDefault()
-      await onSend((event.target as HTMLInputElement).value)
+      onSend((event.target as HTMLInputElement).value)
     }
   }
 
-  const handleSend = async () => {
+  const handleSend = () => {
     if (inputRef.current) {
-      await onSend(inputRef.current.value)
+      onSend((inputRef.current as HTMLInputElement).value)
     }
   }
 

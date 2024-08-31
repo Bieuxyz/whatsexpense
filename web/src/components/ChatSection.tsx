@@ -1,5 +1,5 @@
 import { useMessages } from "@/fetchHook/message.ts"
-import { useUserInfo } from "@/fetchHook/user.ts"
+import { useUser } from "@/fetchHook/user.ts"
 import { Message, Transaction } from "@/type/message.ts"
 import { cn } from "@/lib/utils.ts"
 import { buttonVariants } from "@/components/ui/button.tsx"
@@ -10,7 +10,7 @@ import { Separator } from "@/components/ui/separator.tsx"
 
 export const ChatSection = () => {
   const { data: messages, loading } = useMessages()
-  const { data: user } = useUserInfo()
+  const { data: user } = useUser()
   const listRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
